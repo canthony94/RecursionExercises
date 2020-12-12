@@ -42,7 +42,6 @@ def lucas_number(n)
 
     return 2 if n == 0
     return 1 if n == 1
-    return 3 if n == 2 
 
     lucas_number(n-1) + lucas_number(n-2)
 
@@ -64,10 +63,9 @@ def sum_array(array)
 
     n = 0
     return 0 if array == []
-    return array.sum if array.length == 1
-
 
     array[-1] + sum_array(array.take(array.length-1))
+    # could use  .. + sum_array(arrary[1..-1])
     
 end
 
@@ -86,9 +84,8 @@ end
 # reverse_string("friends")     # => "sdneirf"
 def reverse_string(str)
     return "" if str == ""
-    return str if str.length == 1
-
     p str[-1] + reverse_string(str[0..-2])
+    # could alos do reverse_string(str[1..-1]) + str[0]
 end
 
 
@@ -122,10 +119,19 @@ end
 #     3-dimensional array: [[['some data']]]
 def flatten(data)
 
-    return [] << data if data.class == String
+    return [] << data if !data.is_a?(Array)
     return data if data == data.flatten
 
     flatten(data.flatten)
+
+    """
+    flattened = []
+    data.each do |el|
+        flattened += flatten(el)
+    end
+
+    flattened
+    """
 
 end
 
