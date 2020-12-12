@@ -81,10 +81,14 @@ end
 # 
 # reverse_string("")            # => ""
 # reverse_string("c")           # => "c"
+# reverse_string("ca")          # => "ac"
 # reverse_string("internet")    # => "tenretni"
 # reverse_string("friends")     # => "sdneirf"
 def reverse_string(str)
+    return "" if str == ""
+    return str if str.length == 1
 
+    p str[-1] + reverse_string(str[0..-2])
 end
 
 
@@ -118,4 +122,10 @@ end
 #     3-dimensional array: [[['some data']]]
 def flatten(data)
 
+    return [] << data if data.class == String
+    return data if data == data.flatten
+
+    flatten(data.flatten)
+
 end
+
